@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="app_color">#ffa033</color>
+    <color name="app_color_pressed">#ffb033</color>
+    <color name="white">#FFFFFF</color>
+    <color name="alpha">#00FFFFFF</color>
+    <color name="white_pressed">#f1f1f1</color>
+    <color name="black">#000000</color>
+    <color name="text_333">#333333</color>
+    <color name="text_888">#888888</color>
+    <color name="text_999">#999999</color>
+    <color name="text_666">#666666</color>
+    <color name="text_ccc">#cccccc</color>
+    <color name="edit_border">#cccccc</color>
+    <color name="login_border">#333333</color>
+    <color name="btn_gray">#f0f0f0</color>
+    <color name="btn_gray_pressed">#e8e8e8</color>
+    <color name="red">#ff0000</color>
+    <color name="bg_gray">#f0f1f2</color>
+
+</resources>

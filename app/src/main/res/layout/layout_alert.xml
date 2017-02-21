@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="16dp"
+        android:background="@drawable/bg_dialog_exit" >
+
+        <TextView
+            android:id="@+id/dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@string/dialog_title"
+            android:textColor="@color/text_333"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/dialog_message_hide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dialog_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:maxHeight="200dp"
+            android:text="这里是提示内容"
+            android:textColor="@color/alpha"
+            android:textSize="14dp" />
+
+        <ScrollView
+            android:id="@+id/svAlert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/dialog_message_hide"
+            android:layout_alignTop="@id/dialog_message_hide"
+            android:layout_centerHorizontal="true" >
+
+            <TextView
+                android:id="@+id/dialog_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dialog_title"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="这里是提示内容"
+                android:textColor="@color/text_333"
+                android:textSize="14dp" />
+        </ScrollView>
+
+        <Button
+            android:id="@+id/dialog_ok"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/svAlert"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_btn_must_refresh"
+            android:text="@string/dialog_ok"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+    </RelativeLayout>
+
+</RelativeLayout>

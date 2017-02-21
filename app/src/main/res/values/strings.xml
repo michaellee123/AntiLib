@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="app_name">AntiLib</string>
+    <string name="dialog_title">提示信息:</string>
+    <string name="dialog_ok">确认</string>
+    <string name="dialog_no">取消</string>
+    <string name="dialog_title_t">提示</string>
+
+</resources>

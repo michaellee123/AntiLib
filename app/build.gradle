@@ -1,0 +1,29 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion '24.0.0'
+    defaultConfig {
+        applicationId "dog.abcd.lib"
+        minSdkVersion 19
+        targetSdkVersion 24
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+    productFlavors {
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:+'
+    compile group: 'com.mcxiaoke.volley', name: 'library', version: '1.0.19'
+    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.5.0'
+    compile 'com.squareup.okhttp3:okhttp-urlconnection:3.5.0'
+    compile group: 'org.apache.httpcomponents', name: 'httpcore', version: '4.4.5'
+    compile group: 'com.nostra13.universalimageloader', name: 'universal-image-loader', version: '1.9.5'
+}
