@@ -8,6 +8,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 /**
  * <b> 图片加载</b><br>
@@ -59,6 +60,19 @@ public class AntiImageLoader {
     public void display(String uri, ImageView imageView,
                         DisplayImageOptions options) {
         imageLoader.displayImage(uri, imageView, options);
+    }
+
+    /**
+     * 显示图片
+     *
+     * @param uri       图片地址
+     * @param imageView 图片控件
+     * @param options   自定义option
+     * @param listenser 图片加载监听
+     */
+    public void display(String uri, ImageView imageView,
+                        DisplayImageOptions options, ImageLoadingListener listenser) {
+        imageLoader.displayImage(uri, imageView, options, listenser);
     }
 
     /**

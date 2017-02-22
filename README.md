@@ -53,3 +53,4 @@ AntiInject.inject(this);
                 .create()
                 .start();
 ```
+以上只是对网络请求的简单介绍，需要详细了解可以查看www.abcd.dog中的文档，也可以看看源码

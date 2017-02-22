@@ -159,7 +159,7 @@ public class AntiNetwork {
          * @param value
          * @return
          */
-        public Builder putParams(String key, String value) {
+        public Builder putParam(String key, String value) {
             params.put(key, value);
             return this;
         }
@@ -182,7 +182,7 @@ public class AntiNetwork {
          * @param value
          * @return
          */
-        public Builder putHeaders(String key, String value) {
+        public Builder putHeader(String key, String value) {
             headers.put(key, value);
             return this;
         }
