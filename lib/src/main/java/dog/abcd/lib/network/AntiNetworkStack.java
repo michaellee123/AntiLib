@@ -30,9 +30,6 @@ import okhttp3.OkHttpClient;
  *
  * @author Michael Lee<br>
  *         <b> create at </b>2017/1/22 下午 13:26
- * @Company RZQC
- * @Mender Michael Lee<br>
- * <b> change at </b>2017/1/22 下午 13:26
  */
 class AntiNetworkStack extends HurlStack {
 

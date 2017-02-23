@@ -8,11 +8,8 @@ import android.util.Log;
  * 封装了Log类的操作，方法调用与Log类一致，只是加入idDebug状态，
  * 在发布App的时候在Application中设置为false则不会打印日志出来了
  * 
- * @Company RZQC
  * @author Michael Lee<br>
  *         <b> create at </b>2016-1-28 下午1:45:53
- * @Mender Michael Lee<br>
- *         <b> change at </b>2016-1-28 下午1:45:53
  */
 public class AntiLog {
 	// 是否为调试状态

@@ -12,9 +12,6 @@ import java.util.Map;
  *
  * @author Michael Lee<br>
  *         <b> create at </b>2016-4-15 上午9:27:32
- * @Company RZQC
- * @Mender Michael Lee<br>
- * <b> change at </b>2016-4-15 上午9:27:32
  */
 class AntiMessenger {
     private Map<String, Boolean> mapBoolean = new Hashtable<String, Boolean>();

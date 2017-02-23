@@ -12,9 +12,6 @@ import java.lang.reflect.Method;
  *
  * @author Michael Lee<br>
  *         <b> create at </b>2017/1/18 下午 13:51
- * @Company RZQC
- * @Mender Michael Lee<br>
- * <b> change at </b>2017/1/18 下午 13:51
  */
 public class AntiInject {
     private static final String METHOD_FIND_VIEW_BY_ID = "findViewById";

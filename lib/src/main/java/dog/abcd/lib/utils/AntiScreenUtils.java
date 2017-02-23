@@ -13,11 +13,8 @@ import android.view.WindowManager;
  * <b>屏幕操作</b><br>
  * 获取屏幕尺寸，截图，单位换算
  * 
- * @Company RZQC
  * @author Michael Lee<br>
  *         <b> create at </b>2016-1-28 下午1:47:48
- * @Mender Michael Lee<br>
- *         <b> change at </b>2016-1-28 下午1:47:48
  */
 public class AntiScreenUtils {
 	private AntiScreenUtils() {

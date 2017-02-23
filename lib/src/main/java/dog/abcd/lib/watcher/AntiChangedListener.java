@@ -9,9 +9,6 @@ package dog.abcd.lib.watcher;
  *
  * @author Michael Lee<br>
  *         <b> create at </b>2016-4-15 上午9:27:45
- * @Company RZQC
- * @Mender Michael Lee<br>
- * <b> change at </b>2016-4-15 上午9:27:45
  */
 public interface AntiChangedListener {
     void onWatcherChanged(String changedKey);

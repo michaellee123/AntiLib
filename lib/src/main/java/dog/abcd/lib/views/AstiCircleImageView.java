@@ -19,11 +19,8 @@ import android.widget.ImageView;
  * <b>自定义圆形图片框</b><br>
  * 头像类型圆形图片框
  * 
- * @Company RZQC
  * @author Michael Lee<br>
  *         <b> create at </b>2016年2月15日 上午9:19:30
- * @Mender ramon<br>
- *         <b> change at </b>2016年2月15日 上午9:19:30
  */
 public class AstiCircleImageView extends ImageView {
 

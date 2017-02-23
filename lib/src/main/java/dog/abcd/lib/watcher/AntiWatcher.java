@@ -13,9 +13,6 @@ import java.util.Map;
  *
  * @author Michael Lee<br>
  *         <b> create at </b>2016-4-15 上午10:11:07
- * @Company RZQC
- * @Mender Michael Lee<br>
- * <b> change at </b>2017-1-18 上午10:11:07
  */
 public class AntiWatcher {
     private AntiMessenger theMessenger = new AntiMessenger();

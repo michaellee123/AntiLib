@@ -13,14 +13,11 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 
 /**
- * <b>Title</b><br>
- * Description
+ * <b>网络请求结果转换</b><br>
+ * 由返回的Response的data传进来转换成需要的类型
  *
  * @author Michael Lee<br>
  *         <b> create at </b>2017/2/21 下午 15:04
- * @Company RZQC
- * @Mender Michael Lee<br>
- * <b> change at </b>2017/2/21 下午 15:04
  */
 public class AntiNetworkConvert {
     protected static final String PROTOCOL_CHARSET = "utf-8";

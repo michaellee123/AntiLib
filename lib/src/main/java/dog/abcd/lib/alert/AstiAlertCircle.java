@@ -14,9 +14,6 @@ import dog.abcd.lib.R;
  *
  * @author Michael Lee<br>
  *         <b> create at </b>2016年1月28日 上午11:18:18
- * @Company RZQC
- * @Mender Michael Lee<br>
- * <b> change at </b>2016-4-15 下午4:44:51
  */
 public class AstiAlertCircle extends AstiAlertBase {
 

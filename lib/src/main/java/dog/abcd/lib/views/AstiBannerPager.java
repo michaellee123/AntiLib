@@ -27,11 +27,8 @@ import dog.abcd.lib.R;
  * <b>循环轮播</b><br>
  * 先调用init方法初始化，再通过setBannerUrlList设置图片链接列表，最后setOnBannerClickListener设置监听事件
  * 
- * @Company RZQC
- * @author 李其鹏<br>
+ * @author Michael Lee<br>
  *         <b> create at </b>2016-5-20 上午10:57:41
- * @Mender 李其鹏<br>
- *         <b> change at </b>2016-5-20 上午10:57:41
  */
 public class AstiBannerPager extends RelativeLayout {
 

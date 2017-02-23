@@ -9,9 +9,6 @@ import java.util.Map;
  *
  * @author Michael Lee<br>
  *         <b> create at </b>2017/1/22 下午 17:34
- * @Company RZQC
- * @Mender Michael Lee<br>
- * <b> change at </b>2017/1/22 下午 17:34
  */
 public class AntiNetwork {
 

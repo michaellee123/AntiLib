@@ -14,11 +14,8 @@ import android.view.ViewGroup;
  * <b>流布局控件</b><br>
  * 流布局自定义控件
  * 
- * @Company RZQC
  * @author ramon<br>
  *         <b> create at </b>2016年2月15日 下午12:02:16
- * @Mender ramon<br>
- *         <b> change at </b>2016年2月15日 下午12:02:16
  */
 
 public class AstiFlowLayout extends ViewGroup {

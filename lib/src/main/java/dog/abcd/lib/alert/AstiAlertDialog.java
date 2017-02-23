@@ -15,11 +15,8 @@ import dog.abcd.lib.utils.AntiDataUtils;
  * <b> 自定义弹窗</b><br>
  * 带两个按钮的提示窗口
  *
- * @author 李其鹏<br>
+ * @author Michael Lee<br>
  *         <b> create at </b>2016年2月15日 上午9:22:03
- * @Company RZQC
- * @Mender 李其鹏<br>
- * <b> change at </b>2016-2-16 下午4:44:51
  */
 public class AstiAlertDialog extends AstiAlertBase {
     private Button btnLeft;

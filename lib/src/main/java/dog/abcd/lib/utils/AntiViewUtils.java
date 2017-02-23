@@ -24,11 +24,8 @@ import android.widget.TextView;
  * <b> 对View显示的操作</b><br>
  * 一些计算高度和UI显示的操作
  * 
- * @Company RZQC
  * @author Michael Lee<br>
  *         <b> create at </b>2016-1-28 下午1:54:42
- * @Mender Michael Lee<br>
- *         <b> change at </b>2016-1-28 下午1:54:42
  */
 public class AntiViewUtils {
 

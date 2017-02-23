@@ -16,9 +16,6 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
  *
  * @author Michael Lee<br>
  *         <b> create at </b>2016-1-28 上午10:41:53
- * @Company RZQC
- * @Mender Michael Lee<br>
- * <b> change at </b>2016-1-28 上午10:41:53
  */
 public class AntiImageLoader {
     private DisplayImageOptions options;

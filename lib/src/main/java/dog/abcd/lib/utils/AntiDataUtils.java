@@ -11,12 +11,9 @@ import java.util.regex.Pattern;
  * <b>数据校验类</b><br>
  * 一些数据的校验
  * 
- * @Company RZQC
  * @author Michael Lee<br>
  *         <b> create at </b>2016-1-28 上午10:56:01
- * @Mender Michael Lee<br>
- *         <b> change at </b>2017-01-17 上午11:56:01
- * 
+ *
  */
 public class AntiDataUtils {
 

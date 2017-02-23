@@ -7,11 +7,8 @@ import java.util.Map;
  * <b>坐标类型转换</b><br>
  * GCJ02和BD09的互相转换
  * 
- * @Company RZQC
  * @author Michael Lee<br>
  *         <b> create at </b>2016-1-28 上午11:30:33
- * @Mender Michael Lee<br>
- *         <b> change at </b>2016-1-28 上午11:30:33
  */
 public class AntiLocationConvertUtils {
 

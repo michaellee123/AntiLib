@@ -9,11 +9,8 @@ import android.net.Uri;
  * <b>系统帮助类</b><br>
  * 一些常用的系统方法调用
  *
- * @Company RZQC
  * @author Michael Lee<br>
  *         <b> create at </b>2016-1-28 上午10:56:01
- * @Mender Michael Lee<br>
- *         <b> change at </b>2017-01-17 上午11:56:01
  *
  */
 public class AntiSystemUtils {

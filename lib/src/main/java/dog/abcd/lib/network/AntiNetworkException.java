@@ -6,9 +6,6 @@ package dog.abcd.lib.network;
  *
  * @author Michael Lee<br>
  *         <b> create at </b>2017/2/20 下午 14:33
- * @Company RZQC
- * @Mender Michael Lee<br>
- * <b> change at </b>2017/2/20 下午 14:33
  */
 public class AntiNetworkException extends Exception {
 

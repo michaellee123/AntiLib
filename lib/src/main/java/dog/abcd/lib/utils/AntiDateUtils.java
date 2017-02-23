@@ -10,11 +10,8 @@ import java.util.Date;
  * <b>时间操作</b><br>
  * 包括时间的获取和转换
  * 
- * @Company RZQC
  * @author Michael Lee<br>
  *         <b> create at </b>2016-1-28 上午11:18:21
- * @Mender Michael Lee<br>
- *         <b> change at </b>2017-1-17 上午11:18:21
  */
 @SuppressLint("SimpleDateFormat")
 public class AntiDateUtils {

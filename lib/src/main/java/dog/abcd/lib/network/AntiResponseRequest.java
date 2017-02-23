@@ -6,14 +6,11 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
 
 /**
- * <b>Title</b><br>
- * Description
+ * <b>通用网络请求</b><br>
+ * 返回的值需要调用AntiNetworkConvert进行转换
  *
  * @author Michael Lee<br>
  *         <b> create at </b>2017/2/21 下午 12:57
- * @Company RZQC
- * @Mender Michael Lee<br>
- * <b> change at </b>2017/2/21 下午 12:57
  */
 public class AntiResponseRequest extends Request<NetworkResponse> {
     private Response.Listener<NetworkResponse> mListener;

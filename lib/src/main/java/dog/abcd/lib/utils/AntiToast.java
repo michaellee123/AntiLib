@@ -8,11 +8,8 @@ import android.widget.Toast;
  * <b>Toast类的封装</b><br>
  * 避免了多次调用后一直显示Toast的问题
  * 
- * @Company RZQC
  * @author Michael Lee<br>
  *         <b> create at </b>2016-1-28 下午1:51:56
- * @Mender Michael Lee<br>
- *         <b> change at </b>2016-2-16 下午5:06:03
  */
 public class AntiToast {
 

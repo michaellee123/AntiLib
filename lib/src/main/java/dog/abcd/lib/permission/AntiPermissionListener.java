@@ -5,9 +5,6 @@ package dog.abcd.lib.permission;
  *
  * @author Michael Lee<br>
  *         <b> create at </b>2017/2/23 下午 13:04
- * @Company RZQC
- * @Mender Michael Lee<br>
- * <b> change at </b>2017/2/23 下午 13:04
  */
 public interface AntiPermissionListener {
     /**

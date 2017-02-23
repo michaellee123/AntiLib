@@ -11,9 +11,6 @@ import java.lang.annotation.Target;
  *
  * @author Michael Lee<br>
  *         <b> create at </b>2017/1/18 下午 13:43
- * @Company RZQC
- * @Mender Michael Lee<br>
- * <b> change at </b>2017/1/18 下午 13:43
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)

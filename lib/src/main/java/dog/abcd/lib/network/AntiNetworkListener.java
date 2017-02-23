@@ -8,9 +8,6 @@ import com.android.volley.NetworkResponse;
  *
  * @author Michael Lee<br>
  *         <b> create at </b>2017/2/20 下午 14:31
- * @Company RZQC
- * @Mender Michael Lee<br>
- * <b> change at </b>2017/2/20 下午 14:31
  */
 public interface AntiNetworkListener {
 

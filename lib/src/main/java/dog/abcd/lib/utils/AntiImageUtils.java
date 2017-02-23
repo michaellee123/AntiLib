@@ -13,11 +13,8 @@ import android.util.Base64;
  * <b>图片处理</b><br>
  * 对图片进行尺寸和质量压缩以及base64编码
  * 
- * @Company RZQC
  * @author Michael Lee<br>
  *         <b> create at </b>2016-1-28 上午11:19:34
- * @Mender Michael Lee<br>
- *         <b> change at </b>2016-1-28 上午11:19:34
  */
 public class AntiImageUtils {
 

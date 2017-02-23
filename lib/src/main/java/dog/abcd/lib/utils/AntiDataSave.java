@@ -9,11 +9,8 @@ import android.content.SharedPreferences.Editor;
  * <b> 数据缓存类</b><br>
  * 封装SharedPreferences的简单操作
  * 
- * @Company RZQC
  * @author Michael Lee<br>
  *         <b> create at </b>2016-1-28 上午11:02:16
- * @Mender Michael Lee<br>
- *         <b> change at </b>2016-1-28 上午11:02:16
  */
 public class AntiDataSave {
 	private Context context;

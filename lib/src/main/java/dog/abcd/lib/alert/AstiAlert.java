@@ -18,9 +18,6 @@ import dog.abcd.lib.utils.AntiScreenUtils;
  *
  * @author Michael Lee<br>
  *         <b> create at </b>2016年2月15日 上午9:21:02
- * @Company RZQC
- * @Mender Michael Lee<br>
- * <b> change at </b>2017-01-17 下午4:44:51
  */
 public class AstiAlert extends AstiAlertBase {
 

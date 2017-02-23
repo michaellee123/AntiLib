@@ -14,9 +14,6 @@ import dog.abcd.lib.R;
  *
  * @author Michael Lee<br>
  *         <b> create at </b>2017/1/17 下午 16:38
- * @Company RZQC
- * @Mender Michael Lee<br>
- * <b> change at </b>2017/1/17 下午 16:38
  */
 public abstract class AstiAlertBase {
 
