@@ -25,12 +25,19 @@ public abstract class AstiAlertBase {
     private AlertDialog dlg;
     private Window window;
 
+    public AstiAlertBase(Context context, String TAG) {
+        if (TAG == null || context == null) {
+            throw new IllegalArgumentException("arguments that named TAG or context can not be null!");
+        }
+        this.TAG = TAG;
+        this.context = context;
+    }
+
     protected abstract View createView();
 
     protected abstract boolean cancelable();
 
-    public void show(String TAG) {
-        this.TAG = TAG;
+    public void show() {
         dismiss();
         try {
             dlg = new AlertDialog.Builder(context).create();
@@ -41,7 +48,7 @@ public abstract class AstiAlertBase {
             window.setBackgroundDrawableResource(R.color.alpha);
             AstiAlertManager.getInstance().add(this);
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
@@ -50,8 +57,8 @@ public abstract class AstiAlertBase {
      */
     public void dismiss() {
         try {
-            AstiAlertManager.getInstance().remove(this);
             dlg.dismiss();
+            AstiAlertManager.getInstance().remove(this);
         } catch (Exception e) {
 
         }
@@ -62,8 +69,8 @@ public abstract class AstiAlertBase {
      */
     public void cancel() {
         try {
-            AstiAlertManager.getInstance().remove(this);
             dlg.cancel();
+            AstiAlertManager.getInstance().remove(this);
         } catch (Exception e) {
 
         }
@@ -75,10 +82,6 @@ public abstract class AstiAlertBase {
 
     public Context getContext() {
         return context;
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
     }
 
     /**

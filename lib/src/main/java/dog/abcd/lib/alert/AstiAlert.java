@@ -33,8 +33,8 @@ public class AstiAlert extends AstiAlertBase {
         return new Builder(context);
     }
 
-    private AstiAlert(Context context, String title, String message, String btnText, OnClickListener onClickListener, boolean cancelable) {
-        setContext(context);
+    private AstiAlert(Context context, String TAG, String title, String message, String btnText, OnClickListener onClickListener, boolean cancelable) {
+        super(context, TAG);
         alertView = initView(title, message, btnText, onClickListener);
         this.cancelable = cancelable;
     }
@@ -116,9 +116,15 @@ public class AstiAlert extends AstiAlertBase {
         }
 
         private Context context;
+        private String TAG;
         private String title, message, btnStr;
         private boolean cancelable = false;
         private OnClickListener onClickListener;
+
+        public Builder setTAG(String TAG) {
+            this.TAG = TAG;
+            return this;
+        }
 
         public Builder setOnClickListener(OnClickListener onClickListener) {
             this.onClickListener = onClickListener;
@@ -152,7 +158,7 @@ public class AstiAlert extends AstiAlertBase {
         }
 
         public AstiAlert create() {
-            return new AstiAlert(context, title, message, btnStr, onClickListener, cancelable);
+            return new AstiAlert(context, TAG, title, message, btnStr, onClickListener, cancelable);
         }
 
     }

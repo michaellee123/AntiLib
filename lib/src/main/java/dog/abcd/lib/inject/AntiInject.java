@@ -32,8 +32,7 @@ public class AntiInject {
     }
 
     /**
-     *
-     * @param object Fragment或者自定义控件等的类
+     * @param object      Fragment或者自定义控件等的类
      * @param contentView 布局文件的根布局
      */
     public static void inject(Object object, View contentView) {
@@ -77,7 +76,7 @@ public class AntiInject {
     /**
      * 注入所有的控件
      *
-     * @param object Fragment或者自定义控件等的类
+     * @param object      Fragment或者自定义控件等的类
      * @param contentView 布局文件的根布局
      */
     private static void injectViews(Object object, View contentView) {

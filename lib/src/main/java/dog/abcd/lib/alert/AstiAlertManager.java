@@ -14,6 +14,9 @@ import java.util.Map;
  * <b> change at </b>2017/1/17 下午 16:35
  */
 public class AstiAlertManager {
+
+    Map<String, AstiAlertBase> queue = new HashMap<>();
+
     private AstiAlertManager() {
     }
 
@@ -30,16 +33,13 @@ public class AstiAlertManager {
         return instance;
     }
 
-    Map<String, AstiAlertBase> queue = new HashMap<>();
-
     /**
      * 显示
      *
-     * @param TAG   标识
      * @param alert 弹窗
      */
-    public void show(String TAG, AstiAlertBase alert) {
-        alert.show(TAG);
+    public void show(AstiAlertBase alert) {
+        alert.show();
     }
 
     /**

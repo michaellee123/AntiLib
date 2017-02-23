@@ -33,8 +33,8 @@ public class AstiAlertDialog extends AstiAlertBase {
         return new Builder(context);
     }
 
-    private AstiAlertDialog(Context context, String title, String message, String btnLeftStr, String btnRightStr, OnClickListener leftOnClick, OnClickListener rightOnClick, boolean cancelable) {
-        setContext(context);
+    private AstiAlertDialog(Context context, String TAG, String title, String message, String btnLeftStr, String btnRightStr, OnClickListener leftOnClick, OnClickListener rightOnClick, boolean cancelable) {
+        super(context, TAG);
         initView(title, message, btnLeftStr, btnRightStr, leftOnClick, rightOnClick);
         this.cancelable = cancelable;
     }
@@ -115,12 +115,18 @@ public class AstiAlertDialog extends AstiAlertBase {
             this.context = context;
         }
 
+        private String TAG;
         private String title;
         private String message;
         private String leftBtnStr;
         private String rightBtnStr;
         private OnClickListener leftOnClick, rightOnClick;
         private boolean cancelable = false;
+
+        public Builder setTAG(String TAG) {
+            this.TAG = TAG;
+            return this;
+        }
 
         public Builder setTitle(String title) {
             this.title = title;
@@ -164,7 +170,7 @@ public class AstiAlertDialog extends AstiAlertBase {
         }
 
         public AstiAlertDialog create() {
-            return new AstiAlertDialog(context, title, message, leftBtnStr, rightBtnStr, leftOnClick, rightOnClick, cancelable);
+            return new AstiAlertDialog(context, TAG, title, message, leftBtnStr, rightBtnStr, leftOnClick, rightOnClick, cancelable);
         }
 
     }

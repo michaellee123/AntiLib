@@ -68,6 +68,9 @@ public class AntiNetwork {
     }
 
     private AntiNetwork(Builder builder) {
+        if (builder.TAG == null || builder.url == null) {
+            throw new IllegalArgumentException("arguments that named TAG or url can not be null");
+        }
         this.method = builder.method;
         this.TAG = builder.TAG;
         this.url = builder.url;

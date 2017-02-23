@@ -36,16 +36,16 @@ public class AstiAlertCircle extends AstiAlertBase {
      * @param cancelable 是否能够取消（默认为能够取消）
      * @return
      */
-    public static AstiAlertCircle create(Context context, String message, boolean cancelable) {
-        return new AstiAlertCircle(context, message, cancelable);
+    public static AstiAlertCircle create(Context context, String TAG, String message, boolean cancelable) {
+        return new AstiAlertCircle(context, TAG, message, cancelable);
     }
 
-    public static AstiAlertCircle create(Context context, String message) {
-        return new AstiAlertCircle(context, message, true);
+    public static AstiAlertCircle create(Context context, String TAG, String message) {
+        return new AstiAlertCircle(context, TAG, message, true);
     }
 
-    private AstiAlertCircle(Context context, String message, boolean cancelable) {
-        setContext(context);
+    private AstiAlertCircle(Context context, String TAG, String message, boolean cancelable) {
+        super(context, TAG);
         alertView = initView(message);
         this.cancelable = cancelable;
     }
