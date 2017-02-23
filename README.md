@@ -24,12 +24,9 @@ AntiNetworkManager.init(this, 0, new IDefaultParams() {
                 return false;
             }
         });
-这里统一处理之后可以自己实现一个Cookie的管理
 ```
 ### 网络请求的调用
 ```
-AntiInject.inject(this);
-        AntiWatcher.register(this);
         AntiNetwork.builder()
                 .setMethod(AntiNetwork.Method.GET)
                 .setTAG(MainActivity.class.getSimpleName())
