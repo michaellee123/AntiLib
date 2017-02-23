@@ -3,7 +3,7 @@
 ## 网络请求的调用
 ### 网络网络请求的初始化
 ```
-AntiNetworkManager.init(this, 0, new IDefaultParams() {
+        AntiNetworkManager.init(this, 0, new IDefaultParams() {
             @Override
             public Map<String, String> getDefaultParams() {
                 return null;
