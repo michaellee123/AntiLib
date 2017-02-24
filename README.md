@@ -1,6 +1,10 @@
 # AntiLib
-在使用时需要在Application中初始化一些东西，包括AntiImageLoader(网络图片加载),AntiNetworkManager(网络请求)。
->>**可以通过在gradle中使用compile 'dog.abcd:antilib:1.0.1'引用**
+
+>在使用时需要在Application中初始化一些东西，包括AntiImageLoader(网络图片加载),AntiNetworkManager(网络请求)。
+
+>**可以通过在gradle中使用compile 'dog.abcd:antilib:1.0.1'引用**
+
+# 调用示例
 ## 网络请求的调用
 ### 网络网络请求的初始化
 ```
