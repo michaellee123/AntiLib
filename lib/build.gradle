@@ -8,7 +8,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 25
     }
-    lintOptions{
+    lintOptions {
         abortOnError false
     }
     buildTypes {
@@ -32,10 +32,11 @@ dependencies {
 
 //添加
 publish {
-    userOrg = 'antichristm'//bintray.com用户名
-    groupId = 'dog.abcd'//jcenter上的路径
-    artifactId = 'AntiLib'//项目名称
+    userOrg = 'antichristm'//Organizations名
+    repoName = 'android'//Repository名
+    groupId = 'dog.abcd'//包名（不要项目名）
+    artifactId = 'antilib'//项目名称
     publishVersion = '1.0.1'//版本号
-    desc = 'Android开发框架，包括网络请求、权限请求、组件通讯、控件注入以及常用工具类'//描述，不重要
+    desc = 'A Library For Android Development'//描述，不重要
     website = 'https://github.com/michaellee123/AntiLib'//网站
 }

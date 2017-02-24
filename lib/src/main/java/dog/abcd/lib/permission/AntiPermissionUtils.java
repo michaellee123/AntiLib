@@ -14,7 +14,7 @@ import dog.abcd.lib.utils.AntiLog;
 
 /**
  * <b>运行时权限请求工具</b><br>
- * 首先在在Activity中首先需要重写onRequestPermissionsResult方法，在方法中调用此类中的handlePermission方法即可。<br/>
+ * 首先在在Activity中首先需要重写onRequestPermissionsResult方法，在方法中调用此类中的handlePermission方法即可。<br>
  * 在需要请求权限的时候调用此类中的requestPermission方法即可
  *
  * @author Michael Lee<br>
