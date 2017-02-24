@@ -2,9 +2,12 @@ package dog.abcd.lib.inject;
 
 import android.app.Activity;
 import android.view.View;
+import android.view.ViewGroup;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+
+import dog.abcd.lib.R;
 
 /**
  * <b>控件注入</b><br>
@@ -78,7 +81,6 @@ public class AntiInject {
      */
     private static void injectViews(Object object, View contentView) {
         Class<? extends Object> clazz = object.getClass();
-        Class<? extends View> viewClazz = contentView.getClass();
         Field[] fields = clazz.getDeclaredFields();
         // 遍历所有成员变量
         for (Field field : fields) {
@@ -90,9 +92,7 @@ public class AntiInject {
                 if (viewId != -1) {
                     // 初始化View
                     try {
-                        Method method = viewClazz.getMethod(METHOD_FIND_VIEW_BY_ID,
-                                int.class);
-                        Object resView = method.invoke(viewClazz, viewId);
+                        Object resView = contentView.findViewById(viewId);
                         field.setAccessible(true);
                         field.set(object, resView);
                     } catch (Exception e) {
