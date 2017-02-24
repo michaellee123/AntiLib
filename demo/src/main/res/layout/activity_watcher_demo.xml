@@ -2,30 +2,19 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+    android:id="@+id/activity_watcher_demo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="dog.abcd.lib.demo.MainActivity">
+    tools:context="dog.abcd.demo.WatcherDemoActivity">
 
     <Button
-        android:id="@+id/btn_ma_hello"
+        android:id="@+id/change"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text="点我"/>
+        android:text="CHECK ME!"/>
 
-    <ImageView
-        android:id="@+id/iv_am_hello"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/tv_am_hello"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/iv_am_hello"/>
 </RelativeLayout>
