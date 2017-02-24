@@ -49,7 +49,8 @@
                         AstiAlert.builder(MainActivity.this)
                                 .setTitle("错误信息")
                                 .setMessage(error.getMessage())
-                                .create().show(MainActivity.class.getSimpleName());
+                                .setTAG(MainActivity.class.getSimpleName())
+                                .create().show();
                     }
                 })
                 .create()
