@@ -71,7 +71,7 @@ public class BlankFragment extends Fragment implements AntiChangedListener {
         //加载网络图片
         AntiImageLoader.getInstance().display("http://img.weixinyidu.com/151212/c96ee601.jpg", imageView);
         //发起网络请求
-        AntiNetwork.builder()
+        AntiNetwork.builder(getContext())
                 .setMethod(AntiNetwork.Method.GET)
                 .setTAG(MainActivity.class.getSimpleName())
                 .setUrl("http://www.baidu.com")
@@ -85,7 +85,7 @@ public class BlankFragment extends Fragment implements AntiChangedListener {
 
                     @Override
                     public void error(AntiNetwork network, AntiNetworkException error) {
-                        AstiAlert.builder(getContext())
+                        AstiAlert.builder(network.getContext())
                                 .setTitle("错误信息")
                                 .setMessage(error.getMessage())
                                 .setTAG(BlankFragment.class.getSimpleName())
