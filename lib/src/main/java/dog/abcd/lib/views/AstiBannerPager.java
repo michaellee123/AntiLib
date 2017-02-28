@@ -288,7 +288,7 @@ public class AstiBannerPager extends RelativeLayout {
 	/**
 	 * 绑定ViewPager
 	 * 
-	 * @author 李其鹏
+	 * @author Michael Lee
 	 * 
 	 */
 	class BannerAdapter extends PagerAdapter {
