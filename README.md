@@ -2,7 +2,7 @@
 
 >在使用时需要在Application中初始化一些东西，包括AntiImageLoader(网络图片加载),AntiNetworkManager(网络请求)。
 
->**可以通过在gradle中使用compile 'dog.abcd:antilib:1.0.2'引用**
+>**可以通过在gradle中使用compile 'dog.abcd:antilib:1.0.3'引用**
 
 # 调用示例
 ## 网络请求的调用
@@ -32,7 +32,7 @@
 ```
 ### 网络请求的调用
 ```
-        AntiNetwork.builder()
+        AntiNetwork.builder(this)
                 .setMethod(AntiNetwork.Method.GET)
                 .setTAG(MainActivity.class.getSimpleName())
                 .setUrl("http://www.baidu.com")
