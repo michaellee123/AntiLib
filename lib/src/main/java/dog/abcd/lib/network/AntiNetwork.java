@@ -1,5 +1,8 @@
 package dog.abcd.lib.network;
 
+import android.content.Context;
+import android.support.annotation.NonNull;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +19,8 @@ public class AntiNetwork {
         POST, GET
     }
 
+    private Context context;
+
     private Method method;
 
     private String TAG;
@@ -31,6 +36,10 @@ public class AntiNetwork {
     private String bodyContentType;
 
     private AntiNetworkListener listener;
+
+    public Context getContext() {
+        return context;
+    }
 
     public Method getMethod() {
         return method;
@@ -66,8 +75,13 @@ public class AntiNetwork {
 
     private AntiNetwork(Builder builder) {
         if (builder.TAG == null || builder.url == null) {
-            throw new IllegalArgumentException("arguments that named TAG or url can not be null");
+            if (builder.listener != null) {
+                listener.error(null, new AntiNetworkException(-1, "arguments that named TAG or url can not be null"));
+            } else {
+                throw new IllegalArgumentException("arguments that named TAG or url can not be null");
+            }
         }
+        this.context = builder.context;
         this.method = builder.method;
         this.TAG = builder.TAG;
         this.url = builder.url;
@@ -91,17 +105,20 @@ public class AntiNetwork {
      *
      * @return
      */
-    public static Builder builder() {
-        return new Builder();
+    public static Builder builder(Context context) {
+        return new Builder(context);
     }
 
     public static class Builder {
 
-        private Builder() {
+        private Builder(Context context) {
+            this.context = context;
         }
 
         public static final String CONTENT_TYPE_JSON = "application/json; charset=utf-8";
         public static final String CONTENT_TYPE_DEFAULT = "application/x-www-form-urlencoded; charset=utf-8";
+
+        private Context context;
 
         private Method method = Method.POST;
 
