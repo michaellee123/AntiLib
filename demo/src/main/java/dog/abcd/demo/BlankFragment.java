@@ -107,6 +107,7 @@ public class BlankFragment extends Fragment implements AntiChangedListener {
     public void onWatcherChanged(String changedKey) {
         if (changedKey.equals("image")) {
             AntiImageLoader.getInstance().display(AntiWatcher.getString(changedKey), imageView);
+            textView.setText(AntiWatcher.getString(changedKey));
         }
     }
 }
