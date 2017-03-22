@@ -3,6 +3,9 @@
  */
 package dog.abcd.lib.watcher;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -54,20 +57,32 @@ public class AntiWatcher {
     /**
      * 通知数据变化
      */
-    private void notifyDataChanged(String changedKey) {
-        Collection<AntiChangedListener> listeners = listenerMap.values();
-        for (AntiChangedListener listener : listeners) {
-            listener.onWatcherChanged(changedKey);
-        }
+    private void notifyDataChanged(final String changedKey) {
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Collection<AntiChangedListener> listeners = listenerMap.values();
+                for (AntiChangedListener listener : listeners) {
+                    listener.onWatcherChanged(changedKey);
+                }
+            }
+        });
     }
 
     /**
      * 通知数据变化
      */
-    private void notifyDataChanged(String changedKey, String... className) {
-        for (String str : className) {
-            listenerMap.get(str).onWatcherChanged(changedKey);
-        }
+    private void notifyDataChanged(final String changedKey, final String... className) {
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                for (String str : className) {
+                    listenerMap.get(str).onWatcherChanged(changedKey);
+                }
+            }
+        });
     }
 
     /**

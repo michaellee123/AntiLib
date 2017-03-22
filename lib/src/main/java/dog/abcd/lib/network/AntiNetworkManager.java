@@ -1,6 +1,8 @@
 package dog.abcd.lib.network;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
@@ -108,18 +110,30 @@ public class AntiNetworkManager {
         queue.cancelAll(antiNetwork.getTAG());
         AntiResponseRequest request = new AntiResponseRequest(antiNetwork.getMethod().equals(AntiNetwork.Method.GET) ? Request.Method.GET : Request.Method.POST, antiNetwork.getUrl(), new Response.Listener<NetworkResponse>() {
             @Override
-            public void onResponse(NetworkResponse response) {
-                if (defaultListener == null || !defaultListener.success(antiNetwork, response)) {
-                    antiNetwork.getListener().success(antiNetwork, response);
-                }
+            public void onResponse(final NetworkResponse response) {
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (defaultListener == null || !defaultListener.success(antiNetwork, response)) {
+                            antiNetwork.getListener().success(antiNetwork, response);
+                        }
+                    }
+                });
             }
         }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                AntiNetworkException exception = new AntiNetworkException(error.networkResponse == null ? -1 : error.networkResponse.statusCode, error.getMessage() == null ? error.toString() : error.getMessage());
-                if (defaultListener == null || !defaultListener.error(antiNetwork, exception)) {
-                    antiNetwork.getListener().error(antiNetwork, exception);
-                }
+            public void onErrorResponse(final VolleyError error) {
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        AntiNetworkException exception = new AntiNetworkException(error.networkResponse == null ? -1 : error.networkResponse.statusCode, error.getMessage() == null ? error.toString() : error.getMessage());
+                        if (defaultListener == null || !defaultListener.error(antiNetwork, exception)) {
+                            antiNetwork.getListener().error(antiNetwork, exception);
+                        }
+                    }
+                });
             }
         }) {
             //重写方法
