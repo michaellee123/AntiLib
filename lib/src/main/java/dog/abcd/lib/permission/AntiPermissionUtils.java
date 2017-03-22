@@ -49,6 +49,7 @@ public class AntiPermissionUtils {
             for (AntiPermission antiPermission : antiPermissions) {
                 antiPermission.listener.success();
             }
+            return;
         }
 
         Map<String, AntiPermissionListener> sa = new HashMap<>();
