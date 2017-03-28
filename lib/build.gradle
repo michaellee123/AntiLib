@@ -26,7 +26,7 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.5.0'
     compile 'org.apache.httpcomponents:httpcore:4.4.5'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    compile 'com.android.support:appcompat-v7:+'
+    compile 'com.android.support:appcompat-v7:25.3.0'
     compile 'com.squareup.okhttp3:okhttp-urlconnection:3.5.0'
 }
 
@@ -36,7 +36,7 @@ publish {
     repoName = 'android'//Repository名
     groupId = 'dog.abcd'//包名（不要项目名）
     artifactId = 'antilib'//项目名称
-    publishVersion = '1.1.0'//版本号
+    publishVersion = '1.1.1'//版本号
     desc = 'A Library For Android Development'//描述，不重要
     website = 'https://github.com/michaellee123/AntiLib'//网站
 }
