@@ -5,8 +5,6 @@ import android.content.Context;
 import java.util.HashMap;
 import java.util.Map;
 
-import dog.abcd.lib.network.listener.AntiNetworkListener;
-
 /**
  * <b>网络请求类</b><br>
  * 调用builder方法获取一个构造器，再调用create创建AntiNetwork类，再调用start或stop
