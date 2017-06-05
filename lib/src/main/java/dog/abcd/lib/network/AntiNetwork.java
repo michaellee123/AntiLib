@@ -1,10 +1,11 @@
 package dog.abcd.lib.network;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import dog.abcd.lib.network.listener.AntiNetworkListener;
 
 /**
  * <b>网络请求类</b><br>
