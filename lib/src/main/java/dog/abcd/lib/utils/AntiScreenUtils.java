@@ -158,7 +158,7 @@ public class AntiScreenUtils {
     /**
      * 获取当前手机是否有虚拟按键(NavigationBar)
      *
-     * @param activity
+     * @param context
      * @return
      */
     @SuppressLint("NewApi")
