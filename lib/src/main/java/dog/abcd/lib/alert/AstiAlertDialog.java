@@ -27,55 +27,55 @@ public class AstiAlertDialog extends AstiAlertBase {
     View alertView;
 
     public static Builder builder(Context context) {
-        return new Builder(context);
+        return new Builder( context );
     }
 
     private AstiAlertDialog(Context context, String TAG, String title, String message, String btnLeftStr, String btnRightStr, OnClickListener leftOnClick, OnClickListener rightOnClick, boolean cancelable) {
-        super(context, TAG);
-        initView(title, message, btnLeftStr, btnRightStr, leftOnClick, rightOnClick);
+        super( context, TAG );
+        alertView = initView( title, message, btnLeftStr, btnRightStr, leftOnClick, rightOnClick );
         this.cancelable = cancelable;
     }
 
     protected View initView(String title, String message, String btnLeftStr, String btnRightStr, final OnClickListener leftOnClick, final OnClickListener rightOnClick) {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.layout_alert_dialog, null);
+        View view = LayoutInflater.from( getContext() ).inflate( R.layout.layout_alert_dialog, null );
         tvMessage = ((TextView) view
-                .findViewById(R.id.tv_message));
-        if (!AntiDataUtils.isEmpty(message)) {
-            tvMessage.setText(message);
+                .findViewById( R.id.tv_message ));
+        if (!AntiDataUtils.isEmpty( message )) {
+            tvMessage.setText( message );
         }
-        tvTitle = ((TextView) view.findViewById(R.id.tv_title));
-        if (!AntiDataUtils.isEmpty(message)) {
-            tvTitle.setText(title);
+        tvTitle = ((TextView) view.findViewById( R.id.tv_title ));
+        if (!AntiDataUtils.isEmpty( message )) {
+            tvTitle.setText( title );
         }
         // 为确认按钮添加事件,执行退出应用操作
-        btnRight = (Button) view.findViewById(R.id.btn_right);
-        if (!AntiDataUtils.isEmpty(btnRightStr)) {
-            btnRight.setText(btnRightStr);
+        btnRight = (Button) view.findViewById( R.id.btn_right );
+        if (!AntiDataUtils.isEmpty( btnRightStr )) {
+            btnRight.setText( btnRightStr );
         }
-        btnRight.setOnClickListener(new OnClickListener() {
+        btnRight.setOnClickListener( new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (rightOnClick != null) {
-                    rightOnClick.onClick(v);
+                    rightOnClick.onClick( v );
                 }
                 dismiss();
             }
-        });
-        btnLeft = (Button) view.findViewById(R.id.btn_left);
-        if (!AntiDataUtils.isEmpty(btnLeftStr)) {
-            btnLeft.setText(btnLeftStr);
+        } );
+        btnLeft = (Button) view.findViewById( R.id.btn_left );
+        if (!AntiDataUtils.isEmpty( btnLeftStr )) {
+            btnLeft.setText( btnLeftStr );
         }
-        btnLeft.setOnClickListener(new OnClickListener() {
+        btnLeft.setOnClickListener( new OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 if (leftOnClick == null) {
-                    leftOnClick.onClick(v);
+                    leftOnClick.onClick( v );
                 }
                 dismiss();
             }
 
-        });
+        } );
         return view;
     }
 
@@ -167,7 +167,7 @@ public class AstiAlertDialog extends AstiAlertBase {
         }
 
         public AstiAlertDialog create() {
-            return new AstiAlertDialog(context, TAG, title, message, leftBtnStr, rightBtnStr, leftOnClick, rightOnClick, cancelable);
+            return new AstiAlertDialog( context, TAG, title, message, leftBtnStr, rightBtnStr, leftOnClick, rightOnClick, cancelable );
         }
 
     }
