@@ -69,7 +69,7 @@ public class AstiAlertDialog extends AstiAlertBase {
 
             @Override
             public void onClick(View v) {
-                if (leftOnClick == null) {
+                if (leftOnClick != null) {
                     leftOnClick.onClick( v );
                 }
                 dismiss();
