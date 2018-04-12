@@ -10,7 +10,7 @@ import java.util.Map;
  * 调用builder方法获取一个构造器，再调用create创建AntiNetwork类，再调用start或stop
  *
  * @author Michael Lee<br>
- *         <b> create at </b>2017/1/22 下午 17:34
+ * <b> create at </b>2017/1/22 下午 17:34
  */
 public class AntiNetwork {
 
@@ -35,6 +35,10 @@ public class AntiNetwork {
     private String bodyContentType;
 
     private AntiNetworkListener listener;
+
+    private int timeOut = 0;
+
+    private boolean shouldCache;
 
     public Context getContext() {
         return context;
@@ -72,6 +76,14 @@ public class AntiNetwork {
         return listener;
     }
 
+    public int getTimeOut() {
+        return timeOut;
+    }
+
+    public boolean isShouldCache() {
+        return shouldCache;
+    }
+
     private AntiNetwork(Builder builder) {
         if (builder.TAG == null || builder.url == null) {
             if (builder.listener != null) {
@@ -89,6 +101,8 @@ public class AntiNetwork {
         this.headers = builder.headers;
         this.listener = builder.listener;
         this.bodyContentType = builder.bodyContentType;
+        this.timeOut = builder.timeOut;
+        this.shouldCache = builder.shouldCache;
     }
 
     public void start() {
@@ -134,6 +148,10 @@ public class AntiNetwork {
         private String bodyContentType;
 
         private AntiNetworkListener listener;
+
+        private boolean shouldCache;
+
+        private int timeOut = 0;
 
         /**
          * 设置请求方法
@@ -244,6 +262,21 @@ public class AntiNetwork {
          */
         public Builder setListener(AntiNetworkListener listener) {
             this.listener = listener;
+            return this;
+        }
+
+        /**
+         * 设置网络超时，如果不设置则使用AntiNetworkManager中初始化时传入的超时时间
+         *
+         * @param timeOut
+         */
+        public Builder setTimeOut(int timeOut) {
+            this.timeOut = timeOut;
+            return this;
+        }
+
+        public Builder setShouldCache(boolean shouldCache) {
+            this.shouldCache = shouldCache;
             return this;
         }
 

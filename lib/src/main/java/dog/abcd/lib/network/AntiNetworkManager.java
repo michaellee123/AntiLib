@@ -11,11 +11,18 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.Volley;
 
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
+
+import dog.abcd.lib.utils.AntiDateUtils;
 import okhttp3.OkHttpClient;
 
 /**
@@ -23,10 +30,10 @@ import okhttp3.OkHttpClient;
  * 维持一个请求队列，需要先在Application中初始化默认参数构造以及默认监听处理
  *
  * @author Michael Lee<br>
- *         <b> create at </b>2017/1/22 下午 13:22
+ * <b> create at </b>2017/1/22 下午 13:22
  */
 public class AntiNetworkManager {
-
+    private static final String DEFAULT_CACHE_DIR = "AntiNetwork";
     private static AntiNetworkManager instance;
 
     /**
@@ -61,12 +68,15 @@ public class AntiNetworkManager {
      * @param defaultParams   默认参数构造
      * @param defaultListener 默认监听处理
      */
-    private AntiNetworkManager(Context context, int certID, IDefaultParams defaultParams, IDefaultListener defaultListener, int timeOut) {
+    private AntiNetworkManager(Context context, int certID, IDefaultParams defaultParams, IDefaultListener defaultListener, int timeOut, int threadPoolSize) {
         this.defaultParams = defaultParams;
         this.defaultListener = defaultListener;
         this.timeOut = timeOut;
         OkHttpClient okHttpClient = new OkHttpClient();
-        this.queue = Volley.newRequestQueue( context, new AntiNetworkStack( okHttpClient, context, certID ) );
+        BasicNetwork network = new BasicNetwork(new AntiNetworkStack(okHttpClient, context, certID));
+        File cacheDir = new File(context.getCacheDir(), DEFAULT_CACHE_DIR);
+        queue = new RequestQueue(new DiskBasedCache(cacheDir), network, threadPoolSize);
+        queue.start();
     }
 
     /**
@@ -81,7 +91,7 @@ public class AntiNetworkManager {
         if (instance == null) {
             synchronized (AntiNetworkManager.class) {
                 if (instance == null) {
-                    instance = new AntiNetworkManager( context, certID, defaultParams, defaultListener, 5000 );
+                    instance = new AntiNetworkManager(context, certID, defaultParams, defaultListener, 5000, 8);
                 }
             }
         }
@@ -97,11 +107,11 @@ public class AntiNetworkManager {
      * @param timeOut         请求超时
      * @return 建议由Application持有返回值，避免内存回收
      */
-    public static AntiNetworkManager init(Context context, int certID, IDefaultParams defaultParams, IDefaultListener defaultListener, int timeOut) {
+    public static AntiNetworkManager init(Context context, int certID, IDefaultParams defaultParams, IDefaultListener defaultListener, int timeOut, int threadPoolSize) {
         if (instance == null) {
             synchronized (AntiNetworkManager.class) {
                 if (instance == null) {
-                    instance = new AntiNetworkManager( context, certID, defaultParams, defaultListener, timeOut );
+                    instance = new AntiNetworkManager(context, certID, defaultParams, defaultListener, timeOut, threadPoolSize);
                 }
             }
         }
@@ -135,40 +145,39 @@ public class AntiNetworkManager {
      * @return
      */
     public Request createRequest(final AntiNetwork antiNetwork) {
-        AntiResponseRequest request = new AntiResponseRequest( antiNetwork.getMethod().equals( AntiNetwork.Method.GET ) ? Request.Method.GET : Request.Method.POST, antiNetwork.getUrl(), new Response.Listener<NetworkResponse>() {
+        AntiResponseRequest request = new AntiResponseRequest(antiNetwork.getMethod().equals(AntiNetwork.Method.GET) ? Request.Method.GET : Request.Method.POST, antiNetwork.getUrl(), new Response.Listener<NetworkResponse>() {
             @Override
             public void onResponse(final NetworkResponse response) {
-                Handler handler = new Handler( Looper.getMainLooper() );
-                handler.post( new Runnable() {
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        if (defaultListener == null || !defaultListener.success( antiNetwork, response )) {
-                            antiNetwork.getListener().success( antiNetwork, response );
+                        if (defaultListener == null || !defaultListener.success(antiNetwork, response)) {
+                            antiNetwork.getListener().success(antiNetwork, response);
                         }
                     }
-                } );
+                });
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(final VolleyError error) {
-                Handler handler = new Handler( Looper.getMainLooper() );
-                handler.post( new Runnable() {
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        AntiNetworkException exception = new AntiNetworkException( error.networkResponse == null ? -1 : error.networkResponse.statusCode, error.getMessage() == null ? error.toString() : error.getMessage() );
-                        if (defaultListener == null || !defaultListener.error( antiNetwork, exception )) {
-                            antiNetwork.getListener().error( antiNetwork, exception );
+                        AntiNetworkException exception = new AntiNetworkException(error.networkResponse == null ? -1 : error.networkResponse.statusCode, error.getMessage() == null ? error.toString() : error.getMessage());
+                        if (defaultListener == null || !defaultListener.error(antiNetwork, exception)) {
+                            antiNetwork.getListener().error(antiNetwork, exception);
                         }
                     }
-                } );
+                });
             }
-        } ) {
+        }) {
             //重写方法
-
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 if (defaultParams != null && defaultParams.getDefaultParams() != null) {
-                    antiNetwork.getParams().putAll( defaultParams.getDefaultParams() );
+                    antiNetwork.getParams().putAll(defaultParams.getDefaultParams());
                     return antiNetwork.getParams();
                 } else if (antiNetwork.getParams() != null) {
                     return antiNetwork.getParams();
@@ -180,7 +189,7 @@ public class AntiNetworkManager {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 if (defaultParams != null && defaultParams.getDefaultHeaders() != null) {
-                    antiNetwork.getHeaders().putAll( defaultParams.getDefaultHeaders() );
+                    antiNetwork.getHeaders().putAll(defaultParams.getDefaultHeaders());
                     return antiNetwork.getHeaders();
                 } else if (antiNetwork.getHeaders() != null) {
                     return antiNetwork.getHeaders();
@@ -193,7 +202,7 @@ public class AntiNetworkManager {
             public byte[] getBody() throws AuthFailureError {
                 if (antiNetwork.getBody() != null) {
                     try {
-                        return antiNetwork.getBody().getBytes( getParamsEncoding() );
+                        return antiNetwork.getBody().getBytes(getParamsEncoding());
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                         return super.getBody();
@@ -212,8 +221,9 @@ public class AntiNetworkManager {
                 }
             }
         };
-        request.setRetryPolicy( new DefaultRetryPolicy( timeOut, 0, 0 ) );
-        request.setTag( antiNetwork.getTAG() );
+        request.setShouldCache(antiNetwork.isShouldCache());
+        request.setRetryPolicy(new DefaultRetryPolicy(antiNetwork.getTimeOut() == 0 ? timeOut : antiNetwork.getTimeOut(), 0, 0));
+        request.setTag(antiNetwork.getTAG());
         return request;
     }
 
@@ -223,7 +233,7 @@ public class AntiNetworkManager {
      * @param antiNetwork 网络请求对象
      */
     public void start(final AntiNetwork antiNetwork) {
-        start( createRequest( antiNetwork ) );
+        start(createRequest(antiNetwork));
     }
 
     /**
@@ -232,8 +242,8 @@ public class AntiNetworkManager {
      * @param request
      */
     public void start(Request request) {
-        queue.cancelAll( request.getTag() );
-        queue.add( request );
+        queue.cancelAll(request.getTag());
+        queue.add(request);
     }
 
     /**
@@ -242,11 +252,12 @@ public class AntiNetworkManager {
      * @param TAG
      */
     public void stop(String TAG) {
-        queue.cancelAll( TAG );
+        queue.cancelAll(TAG);
     }
 
     /**
      * 获取请求队列
+     *
      * @return
      */
     public RequestQueue getQueue() {
