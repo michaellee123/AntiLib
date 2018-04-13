@@ -5,6 +5,7 @@ package dog.abcd.lib.watcher;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.support.annotation.NonNull;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -15,7 +16,7 @@ import java.util.Map;
  * 用于监测数据的改变，分别调用register和unregister进行注册和注销，调用put***方法修改数据，调用get***方法获取数据
  *
  * @author Michael Lee<br>
- *         <b> create at </b>2016-4-15 上午10:11:07
+ * <b> create at </b>2016-4-15 上午10:11:07
  */
 public class AntiWatcher {
     private AntiMessenger theMessenger = new AntiMessenger();
@@ -41,7 +42,7 @@ public class AntiWatcher {
      *
      * @param listener
      */
-    public static void register(AntiChangedListener listener) {
+    public static void register(@NonNull AntiChangedListener listener) {
         getInstance().listenerMap.put(listener.getClass().getSimpleName(), listener);
     }
 
@@ -50,7 +51,7 @@ public class AntiWatcher {
      *
      * @param listener
      */
-    public static void unregister(AntiChangedListener listener) {
+    public static void unregister(@NonNull AntiChangedListener listener) {
         getInstance().listenerMap.remove(listener.getClass().getSimpleName());
     }
 
@@ -62,9 +63,9 @@ public class AntiWatcher {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                Collection<AntiChangedListener> listeners = listenerMap.values();
-                for (AntiChangedListener listener : listeners) {
-                    listener.onWatcherChanged(changedKey);
+                AntiChangedListener[] listeners = listenerMap.values().toArray(new AntiChangedListener[]{});
+                for (int i = 0; i < listeners.length; i++) {
+                    listeners[i].onWatcherChanged(changedKey);
                 }
             }
         });

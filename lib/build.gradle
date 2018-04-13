@@ -35,7 +35,7 @@ publish {
     repoName = 'android'//Repository名
     groupId = 'dog.abcd'//包名（不要项目名）
     artifactId = 'antilib'//项目名称
-    publishVersion = '1.3.0'//版本号
+    publishVersion = '1.3.1'//版本号
     desc = 'A Library For Android Development'//描述，不重要
     website = 'https://github.com/michaellee123/AntiLib'//网站
 }
