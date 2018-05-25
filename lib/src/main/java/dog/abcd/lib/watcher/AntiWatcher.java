@@ -65,7 +65,9 @@ public class AntiWatcher {
             public void run() {
                 AntiChangedListener[] listeners = listenerMap.values().toArray(new AntiChangedListener[]{});
                 for (int i = 0; i < listeners.length; i++) {
-                    listeners[i].onWatcherChanged(changedKey);
+                    if (listenerMap.containsValue(listeners[i])) {
+                        listeners[i].onWatcherChanged(changedKey);
+                    }
                 }
             }
         });

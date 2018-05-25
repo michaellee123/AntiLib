@@ -8,7 +8,7 @@ import java.util.Map;
  * 对所有弹窗进行管理
  *
  * @author Michael Lee<br>
- *         <b> create at </b>2017/1/17 下午 16:35
+ * <b> create at </b>2017/1/17 下午 16:35
  */
 public class AstiAlertManager {
 
@@ -45,7 +45,10 @@ public class AstiAlertManager {
      * @param TAG 标识
      */
     public void dismiss(String TAG) {
-        queue.get(TAG).dismiss();
+        AstiAlertBase alert = getAlert(TAG);
+        if (alert != null) {
+            alert.dismiss();
+        }
     }
 
     /**
@@ -54,7 +57,10 @@ public class AstiAlertManager {
      * @param TAG 标识
      */
     public void cancel(String TAG) {
-        queue.get(TAG).cancel();
+        AstiAlertBase alert = getAlert(TAG);
+        if (alert != null) {
+            alert.cancel();
+        }
     }
 
     /**
