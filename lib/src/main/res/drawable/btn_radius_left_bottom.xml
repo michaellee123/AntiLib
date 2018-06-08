@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- 填充的颜色 -->
-    <solid android:color="#f0f0f0" />
+    <solid android:color="@color/left_btn_color"/>
     <!-- 设置按钮的四个角为弧形 -->
     <!-- android:radius 弧形的半径 -->
     <corners
-        android:bottomLeftRadius="5dp"
+        android:bottomLeftRadius="@dimen/btn_radius"
         android:bottomRightRadius="0dp"
         android:topLeftRadius="0dp"
-        android:topRightRadius="0dp" />
+        android:topRightRadius="0dp"/>
 
 </shape>

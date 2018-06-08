@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_margin="16dp"
-        android:background="@drawable/bg_dialog_exit" >
+        android:background="@drawable/bg_dialog" >
 
         <TextView
             android:id="@+id/dialog_title"
@@ -64,7 +64,7 @@
             android:layout_below="@id/svAlert"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="24dp"
-            android:background="@drawable/bg_btn_must_refresh"
+            android:background="@drawable/bg_btn_radius_bottom"
             android:text="@string/dialog_ok"
             android:textColor="@color/white"
             android:textSize="16dp" />

@@ -10,7 +10,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_margin="16dp"
-        android:background="@drawable/bg_dialog_exit">
+        android:background="@drawable/bg_dialog">
 
         <TextView
             android:id="@+id/tv_title"
@@ -51,7 +51,7 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:background="@drawable/bg_btn_refresh_wait"
+                android:background="@drawable/bg_btn_radius_left_bottom"
                 android:text="@string/dialog_no"
                 android:textColor="@color/text_666"
                 android:textSize="16dp"/>
@@ -61,7 +61,7 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:background="@drawable/bg_btn_refresh"
+                android:background="@drawable/bg_btn_radius_right_bottom"
                 android:text="@string/dialog_ok"
                 android:textColor="@color/white"
                 android:textSize="16dp"/>
