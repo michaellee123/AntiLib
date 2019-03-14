@@ -2,6 +2,9 @@ package dog.abcd.lib.network;
 
 import android.content.Context;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -105,6 +108,15 @@ public class AntiNetwork {
         this.shouldCache = builder.shouldCache;
     }
 
+    public NetworkResponse perform() throws VolleyError {
+        return AntiNetworkManager.getInstance().perform(this);
+    }
+
+    public void start(AntiNetworkListener listener) {
+        this.listener = listener;
+        start();
+    }
+
     public void start() {
         AntiNetworkManager.getInstance().start(this);
     }
@@ -157,6 +169,7 @@ public class AntiNetwork {
          * 设置请求方法
          *
          * @param method
+         *
          * @return
          */
         public Builder setMethod(Method method) {
@@ -168,6 +181,7 @@ public class AntiNetwork {
          * 设置标记
          *
          * @param TAG
+         *
          * @return
          */
         public Builder setTAG(String TAG) {
@@ -179,6 +193,7 @@ public class AntiNetwork {
          * 设置链接地址
          *
          * @param url
+         *
          * @return
          */
         public Builder setUrl(String url) {
@@ -191,6 +206,7 @@ public class AntiNetwork {
          *
          * @param key
          * @param value
+         *
          * @return
          */
         public Builder putParam(String key, String value) {
@@ -202,6 +218,7 @@ public class AntiNetwork {
          * 设置参数Map，会覆盖之前put过的参数，如果需要再put参数的话，把put方法写在set后面
          *
          * @param params
+         *
          * @return
          */
         public Builder setParams(Map<String, String> params) {
@@ -214,6 +231,7 @@ public class AntiNetwork {
          *
          * @param key
          * @param value
+         *
          * @return
          */
         public Builder putHeader(String key, String value) {
@@ -225,6 +243,7 @@ public class AntiNetwork {
          * 设置头Map，会覆盖之前put过的头，如果需要再put头的话，把put方法写在set后面
          *
          * @param headers
+         *
          * @return
          */
         public Builder setHeaders(Map<String, String> headers) {
@@ -236,6 +255,7 @@ public class AntiNetwork {
          * 直接设置body字符串，如果不设置或者设置为null则调用参数拼接后处理作为body，如果不为空，则使用此字符串作为http包体
          *
          * @param body
+         *
          * @return
          */
         public Builder setBody(String body) {
@@ -247,6 +267,7 @@ public class AntiNetwork {
          * 设置包体内容类型，不设置则调用默认
          *
          * @param contentType
+         *
          * @return
          */
         public Builder setBodyContentType(String contentType) {
@@ -258,6 +279,7 @@ public class AntiNetwork {
          * 设置请求监听
          *
          * @param listener
+         *
          * @return
          */
         public Builder setListener(AntiNetworkListener listener) {

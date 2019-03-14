@@ -1,12 +1,10 @@
 package dog.abcd.demo;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import dog.abcd.lib.inject.AntiInject;
-import dog.abcd.lib.inject.AntiInjectView;
 import dog.abcd.lib.utils.AntiToast;
 import dog.abcd.lib.watcher.AntiWatcher;
 
@@ -28,15 +26,14 @@ public class WatcherDemoActivity extends AppCompatActivity {
 
     static int i = 0;
 
-    @AntiInjectView(R.id.change)
     Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_watcher_demo);
+        button = findViewById(R.id.change);
         i++;
-        AntiInject.inject(this);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

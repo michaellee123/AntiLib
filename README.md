@@ -2,12 +2,20 @@
 
 >在使用时需要在Application中初始化一些东西，包括AntiImageLoader(网络图片加载),AntiNetworkManager(网络请求)。
 
->**可以通过在gradle中使用compile 'dog.abcd:antilib:1.3.1'引用**
+```gradle
+dependencies {
+    implementation 'dog.abcd:antilib:1.4.1'
+    implementation 'com.android.volley:volley:1.1.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.11.0'
+}
+```
 
 # 调用示例
 ## 网络请求的调用
 ### 网络网络请求的初始化
-```
+```java
         AntiNetworkManager.init(this, 0, new IDefaultParams() {
             @Override
             public Map<String, String> getDefaultParams() {
@@ -31,7 +39,8 @@
         });
 ```
 ### 网络请求的调用
-```
+#### 异步调用
+```java
         AntiNetwork.builder(this)
                 .setMethod(AntiNetwork.Method.GET)
                 .setTAG(MainActivity.class.getSimpleName())
@@ -56,6 +65,43 @@
                 .create()
                 .start();
 ```
+或者
+```
+        AntiNetwork.builder(this)
+                .setMethod(AntiNetwork.Method.GET)
+                .setTAG(MainActivity.class.getSimpleName())
+                .setUrl("http://www.baidu.com")
+                .putParam("key","value")
+                .putHeader("key","value")
+                .create()
+                .start(new AntiNetworkListener() {
+                    @Override
+                    public void success(AntiNetwork network, NetworkResponse result) {
+                        textView.setText(AntiNetworkConvert.convertResponceToString(result));
+                    }
+
+                    @Override
+                    public void error(AntiNetwork network, AntiNetworkException error) {
+                        AstiAlert.builder(MainActivity.this)
+                                .setTitle("错误信息")
+                                .setMessage(error.getMessage())
+                                .setTAG(MainActivity.class.getSimpleName())
+                                .create().show();
+                    }
+                }));
+```
+#### 同步调用
+```java
+        NetworkResponse response =
+        AntiNetwork.builder(getContext())
+                   .setMethod(AntiNetwork.Method.GET)
+                   .setTAG(MainActivity.class.getSimpleName())
+                   .setUrl("https://www.baidu.com")
+                   .putParam("key", "value")
+                   .putHeader("key", "value")
+                   .create()
+                   .perform();
+```
 ## 加载网络图片
 ### 网络图片加载的初始化
 ```
@@ -68,73 +114,18 @@
         AntiImageLoader.getInstance().display("http://img.weixinyidu.com/151212/c96ee601.jpg", imageView);
 ```
 ## 控件注入
-在成员变量上给出注解
-```
-        @AntiInjectView(R.id.text)
-        TextView textView;
-
-        @AntiInjectView(R.id.image)
-        ImageView imageView;
-```
-在onCreate中调用注入方法
-```
-        AntiInject.inject(this);//Activity的注入，默认在contentView中去调用findViewById方法
-        AntiInject.inject(this, view);//第一个参数是包括成员变量的类，第二个参数是包括View的父级View
-```
+`已弃用`
 ## 权限请求
 ### 发起权限请求并设置回调
 ```
-        AntiPermissionUtils.getInstance().requestPermission(this,
-                new AntiPermission(Manifest.permission.SEND_SMS, new AntiPermissionListener() {
-                    @Override
-                    public void success() {
-                        AntiLog.e(MainActivity.class.getSimpleName(), "允许短信");
-                    }
-
-                    @Override
-                    public void failed() {
-                        AntiLog.e(MainActivity.class.getSimpleName(), "不允许短信");
-                    }
-
-                    @Override
-                    public void refuse() {
-                        AntiLog.e(MainActivity.class.getSimpleName(), "不再提示短信");
-                    }
-                })
-                ,
-                new AntiPermission(Manifest.permission.CAMERA, new AntiPermissionListener() {
-                    @Override
-                    public void success() {
-                        AntiLog.e(MainActivity.class.getSimpleName(), "允许拍照");
-                    }
-
-                    @Override
-                    public void failed() {
-                        AntiLog.e(MainActivity.class.getSimpleName(), "不允许拍照");
-                    }
-
-                    @Override
-                    public void refuse() {
-                        AntiLog.e(MainActivity.class.getSimpleName(), "不再提示拍照");
-                    }
-                })
-                ,
-                new AntiPermission(Manifest.permission.CALL_PHONE, new AntiPermissionListener() {
-                    @Override
-                    public void success() {
-                        AntiLog.e(MainActivity.class.getSimpleName(), "允许拨号");
-                    }
-
-                    @Override
-                    public void failed() {
-                        AntiLog.e(MainActivity.class.getSimpleName(), "不允许拨号");
-                    }
-
-                    @Override
-                    public void refuse() {
-                        AntiLog.e(MainActivity.class.getSimpleName(), "不再提示拨号");
-                    }
-                }));
+        AntiPermissionUtil.getInstance().requestPermission(this, new AntiPermissionListener() {
+            @Override
+            public void onPermissionRequestFinish(String[] success, String[] failed, String[] refuse) {
+                if (success.length == 2) {
+                    //都允许了
+                }
+            }
+        }, Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE);
 ```
 ### 重写onRequestPermissionsResult方法
 ```
@@ -152,7 +143,6 @@ public class BlankFragment extends Fragment implements AntiChangedListener {
 
     View view;
 
-    @AntiInjectView(R.id.image)
     ImageView imageView;
 
 
@@ -160,6 +150,7 @@ public class BlankFragment extends Fragment implements AntiChangedListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_blank, container, false);
+        imageView = view.findViewById(R.id.image);
         AntiWatcher.register(this);
         return view;
     }

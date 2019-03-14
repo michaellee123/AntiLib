@@ -20,7 +20,7 @@ public abstract class AntiNetworkBitmapListener implements AntiNetworkListener {
 
     @Override
     public final void success(AntiNetwork network, NetworkResponse result) {
-        success( network, AntiNetworkConvert.convertResponceToBitmap( result ) );
+        success( network, AntiNetworkConvert.convertResponseToBitmap( result ) );
     }
 
     protected abstract void success(AntiNetwork network, Bitmap result);

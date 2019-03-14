@@ -1,12 +1,13 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'//添加
+//apply plugin: 'com.novoda.bintray-release'//添加
+apply plugin: "guru.stefma.bintrayrelease"
+apply plugin: "guru.stefma.artifacts"
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 28
     }
     buildTypes {
         release {
@@ -27,19 +28,23 @@ android {
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.volley:volley:1.1.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.4.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    implementation 'com.android.support:appcompat-v7:25.3.0'
-    implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.4.1'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.11.0'
 }
-
+version = "1.4.1"
+group = "dog.abcd"
+androidArtifact {
+    artifactId = "antilib"
+}
 //添加
 publish {
     userOrg = 'antichristm'//Organizations名
     repoName = 'android'//Repository名
-    groupId = 'dog.abcd'//包名（不要项目名）
-    artifactId = 'antilib'//项目名称
-    publishVersion = '1.4.0'//版本号
+//    groupId = 'dog.abcd'//包名（不要项目名）
+//    artifactId = 'antilib'//项目名称
+//    publishVersion = '1.4.1'//版本号
     desc = 'A Library For Android Development'//描述，不重要
     website = 'https://github.com/michaellee123/AntiLib'//网站
 }

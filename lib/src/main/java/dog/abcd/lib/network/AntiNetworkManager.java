@@ -13,16 +13,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
-import com.android.volley.toolbox.Volley;
-
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Map;
 
-import dog.abcd.lib.utils.AntiDateUtils;
 import okhttp3.OkHttpClient;
 
 /**
@@ -60,20 +55,25 @@ public class AntiNetworkManager {
 
     private RequestQueue queue;
 
+    private BasicNetwork network;
+
     private int timeOut = 5000;
 
     /**
      * @param context
-     * @param certID          raw文件中的https证书id，如果不需要https则传0
-     * @param defaultParams   默认参数构造
-     * @param defaultListener 默认监听处理
+     * @param certID
+     *         raw文件中的https证书id，如果不需要https则传0
+     * @param defaultParams
+     *         默认参数构造
+     * @param defaultListener
+     *         默认监听处理
      */
     private AntiNetworkManager(Context context, int certID, IDefaultParams defaultParams, IDefaultListener defaultListener, int timeOut, int threadPoolSize) {
         this.defaultParams = defaultParams;
         this.defaultListener = defaultListener;
         this.timeOut = timeOut;
         OkHttpClient okHttpClient = new OkHttpClient();
-        BasicNetwork network = new BasicNetwork(new AntiNetworkStack(okHttpClient, context, certID));
+        network = new BasicNetwork(new AntiNetworkStack(okHttpClient, context, certID));
         File cacheDir = new File(context.getCacheDir(), DEFAULT_CACHE_DIR);
         queue = new RequestQueue(new DiskBasedCache(cacheDir), network, threadPoolSize);
         queue.start();
@@ -83,8 +83,11 @@ public class AntiNetworkManager {
      * 初始化
      *
      * @param context
-     * @param defaultParams   默认参数构造
-     * @param defaultListener 默认监听处理
+     * @param defaultParams
+     *         默认参数构造
+     * @param defaultListener
+     *         默认监听处理
+     *
      * @return 建议由Application持有返回值，避免内存回收
      */
     public static AntiNetworkManager init(Context context, int certID, IDefaultParams defaultParams, IDefaultListener defaultListener) {
@@ -102,9 +105,13 @@ public class AntiNetworkManager {
      * 初始化
      *
      * @param context
-     * @param defaultParams   默认参数构造
-     * @param defaultListener 默认监听处理
-     * @param timeOut         请求超时
+     * @param defaultParams
+     *         默认参数构造
+     * @param defaultListener
+     *         默认监听处理
+     * @param timeOut
+     *         请求超时
+     *
      * @return 建议由Application持有返回值，避免内存回收
      */
     public static AntiNetworkManager init(Context context, int certID, IDefaultParams defaultParams, IDefaultListener defaultListener, int timeOut, int threadPoolSize) {
@@ -142,6 +149,7 @@ public class AntiNetworkManager {
      * 生成网络请求对象
      *
      * @param antiNetwork
+     *
      * @return
      */
     public Request createRequest(final AntiNetwork antiNetwork) {
@@ -228,9 +236,36 @@ public class AntiNetworkManager {
     }
 
     /**
+     * 同步发起网络请求
+     *
+     * @param antiNetwork
+     *
+     * @return
+     *
+     * @throws VolleyError
+     */
+    public NetworkResponse perform(final AntiNetwork antiNetwork) throws VolleyError {
+        return perform(createRequest(antiNetwork));
+    }
+
+    /**
+     * 同步发起网络请求
+     *
+     * @param request
+     *
+     * @return
+     *
+     * @throws VolleyError
+     */
+    public NetworkResponse perform(Request request) throws VolleyError {
+        return network.performRequest(request);
+    }
+
+    /**
      * 开始网络请求
      *
-     * @param antiNetwork 网络请求对象
+     * @param antiNetwork
+     *         网络请求对象
      */
     public void start(final AntiNetwork antiNetwork) {
         start(createRequest(antiNetwork));

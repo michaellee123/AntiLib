@@ -20,7 +20,7 @@ public abstract class AntiNetworkJsonListener implements AntiNetworkListener {
 
     @Override
     public final void success(AntiNetwork network, NetworkResponse result) {
-        success( network, AntiNetworkConvert.convertResponceToJson( result ) );
+        success( network, AntiNetworkConvert.convertResponseToJson( result ) );
     }
 
     protected abstract void success(AntiNetwork network, JSONObject result);

@@ -22,7 +22,7 @@ import java.io.UnsupportedEncodingException;
 public class AntiNetworkConvert {
 	protected static final String PROTOCOL_CHARSET = "utf-8";
 
-	public static String convertResponceToString(NetworkResponse response) {
+	public static String convertResponseToString(NetworkResponse response) {
 		String parsed;
 		try {
 			parsed = new String( response.data, HttpHeaderParser.parseCharset( response.headers, PROTOCOL_CHARSET ) );
@@ -33,7 +33,7 @@ public class AntiNetworkConvert {
 	}
 
 
-	public static JSONObject convertResponceToJson(NetworkResponse response) {
+	public static JSONObject convertResponseToJson(NetworkResponse response) {
 		try {
 			String jsonString = new String( response.data,
 					HttpHeaderParser.parseCharset( response.headers, PROTOCOL_CHARSET ) );
@@ -45,7 +45,7 @@ public class AntiNetworkConvert {
 		}
 	}
 
-	public static JSONArray convertResponceToJsonArray(NetworkResponse response) {
+	public static JSONArray convertResponseToJsonArray(NetworkResponse response) {
 		try {
 			String jsonString = new String( response.data,
 					HttpHeaderParser.parseCharset( response.headers, PROTOCOL_CHARSET ) );
@@ -57,7 +57,7 @@ public class AntiNetworkConvert {
 		}
 	}
 
-	public static Bitmap convertResponceToBitmap(NetworkResponse response) {
+	public static Bitmap convertResponseToBitmap(NetworkResponse response) {
 		byte[] data = response.data;
 		BitmapFactory.Options decodeOptions = new BitmapFactory.Options();
 		// If we have to resize this image, first get the natural bounds.
@@ -66,9 +66,7 @@ public class AntiNetworkConvert {
 		// Decode to the nearest power of two scaling factor.
 		decodeOptions.inJustDecodeBounds = false;
 		// decodeOptions.inPreferQualityOverSpeed = PREFER_QUALITY_OVER_SPEED;
-		Bitmap tempBitmap =
-				BitmapFactory.decodeByteArray( data, 0, data.length, decodeOptions );
-		return tempBitmap;
+		return BitmapFactory.decodeByteArray( data, 0, data.length, decodeOptions );
 	}
 
 }

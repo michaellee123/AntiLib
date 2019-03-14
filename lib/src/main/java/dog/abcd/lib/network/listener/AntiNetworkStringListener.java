@@ -17,7 +17,7 @@ import dog.abcd.lib.network.AntiNetworkListener;
 public abstract class AntiNetworkStringListener implements AntiNetworkListener {
     @Override
     public final void success(AntiNetwork network, NetworkResponse result) {
-        success( network, AntiNetworkConvert.convertResponceToString( result ) );
+        success( network, AntiNetworkConvert.convertResponseToString( result ) );
     }
 
     protected abstract void success(AntiNetwork network, String result);

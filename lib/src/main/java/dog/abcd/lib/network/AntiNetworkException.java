@@ -5,7 +5,7 @@ package dog.abcd.lib.network;
  * 包括http错误与错误信息
  *
  * @author Michael Lee<br>
- *         <b> create at </b>2017/2/20 下午 14:33
+ * <b> create at </b>2017/2/20 下午 14:33
  */
 public class AntiNetworkException extends Exception {
 
@@ -18,6 +18,7 @@ public class AntiNetworkException extends Exception {
 
     private String message;
 
+    @Override
     public String getMessage() {
         return message;
     }
