@@ -33,7 +33,8 @@ public class AstiAlertManager {
     /**
      * 显示
      *
-     * @param alert 弹窗
+     * @param alert
+     *         弹窗
      */
     public void show(AstiAlertBase alert) {
         alert.show();
@@ -42,7 +43,8 @@ public class AstiAlertManager {
     /**
      * 隐藏
      *
-     * @param TAG 标识
+     * @param TAG
+     *         标识
      */
     public void dismiss(String TAG) {
         AstiAlertBase alert = getAlert(TAG);
@@ -54,7 +56,8 @@ public class AstiAlertManager {
     /**
      * 取消
      *
-     * @param TAG 标识
+     * @param TAG
+     *         标识
      */
     public void cancel(String TAG) {
         AstiAlertBase alert = getAlert(TAG);
@@ -71,7 +74,7 @@ public class AstiAlertManager {
     public void add(AstiAlertBase alert) {
         if (queue.containsKey(alert.getTAG())) {
             AstiAlertBase hasAlert = queue.get(alert.getTAG());
-            if (hasAlert != null && hasAlert.getDialog().isShowing()) {
+            if (hasAlert != null) {
                 hasAlert.dismiss();
             }
         }
@@ -90,7 +93,9 @@ public class AstiAlertManager {
     /**
      * 获取弹窗
      *
-     * @param TAG 标识
+     * @param TAG
+     *         标识
+     *
      * @return
      */
     public AstiAlertBase getAlert(String TAG) {

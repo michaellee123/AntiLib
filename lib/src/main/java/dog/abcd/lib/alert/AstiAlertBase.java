@@ -55,7 +55,6 @@ public abstract class AstiAlertBase {
     public void dismiss() {
         try {
             dlg.dismiss();
-            AstiAlertManager.getInstance().remove(this);
         } catch (Exception e) {
 
         }
@@ -67,7 +66,6 @@ public abstract class AstiAlertBase {
     public void cancel() {
         try {
             dlg.cancel();
-            AstiAlertManager.getInstance().remove(this);
         } catch (Exception e) {
 
         }
